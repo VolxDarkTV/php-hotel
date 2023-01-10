@@ -55,25 +55,40 @@
 </head>
 <body>
 
-  <section>
+  <section class="container">
 
-    <div class="container">
-      <?php
-        foreach($hotels as $hotel){
-        echo '<div>' 
+    <div>
+      
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope='col'>Name</th>
+            <th scope='col'>Description</th>
+            <th scope='col'>P</th>
+            <th scope='col'>Vote</th>
+            <th scope='col'>Distance to center</th>
+          </tr>
+        </thead>
 
-        . $hotel['name'] . '<br>'
-        . $hotel['description'] . '<br>'
-        . $hotel['parking'] . '<br>'
-        . $hotel['vote'] . ' vote' . '<br>'
-        . $hotel['distance_to_center']. ' km' . '<br>'
+          <?php 
+          foreach ($hotels as $hotel){
+            echo
+              "<tbody>" .
+              "<tr>" .
+                "<td>" . $hotel['name'] . "</td>" .
+                "<td>" . $hotel['description'] . "</td>" .
+                "<td>" . $hotel['parking'] . "</td>" .
+                "<td>" . $hotel['vote'] . "</td>" .
+                "<td>" . $hotel['distance_to_center'] . ' km' . "</td>" .
+              "</tr>" .
+            "</tbody>";
+          }
+          ?>
 
-        . '</div> <br>';
-        }
-      ?>
+
+      </table>
+        
     </div>
-    
-    
   </section>
 
 </body>
