@@ -57,6 +57,20 @@
 
   <section class="container">
 
+   
+    <div>
+      <form>
+        <!-- Parking -->
+        <input type="checkbox" name="parking" id="parking">
+        <label for="parking">Parking</label>
+        <!-- No Parking -->
+        <input type="checkbox" name="noparking" id="noparking">
+        <label for="noparking">NoParking</label>
+        <!-- Search -->
+        <input type="submit" value="Search">
+      </form>
+    </div>
+
     <div>
       
       <table class="table">
@@ -70,22 +84,39 @@
           </tr>
         </thead>
 
+        <tbody>
           <?php 
-          foreach ($hotels as $hotel){
-            echo
-              "<tbody>" .
-              "<tr>" .
-                "<td>" . $hotel['name'] . "</td>" .
-                "<td>" . $hotel['description'] . "</td>" .
-                "<td>" . $hotel['parking'] . "</td>" .
-                "<td>" . $hotel['vote'] . "</td>" .
-                "<td>" . $hotel['distance_to_center'] . ' km' . "</td>" .
-              "</tr>" .
-            "</tbody>";
+          $hotels_temp = $hotels;
+          if (isset($_GET["parking"])) {
+            $hotels_temp = array_filter($hotels_temp, function($hotel) {
+              return $hotel["parking"] === true;
+            });
           }
-          ?>
+          if (isset($_GET["noparking"])) {
+            $hotels_temp = array_filter($hotels_temp, function($hotel) {
+              return $hotel["parking"] === false;
+            });
+          }
+            foreach ($hotels_temp as $hotel){
+              $name = $hotel['name'];
+              $description = $hotel['description'];
+              $parking = $hotel['parking'] === true ? 'si' : 'no';
+              $vote = $hotel['vote'];
+              $distanceToCenter = $hotel['distance_to_center'];
 
-
+              $textLine =
+                "<tr>" .
+                  "<td>" . $name . "</td>" .
+                  "<td>" . $description . "</td>" .
+                  "<td>" . $parking . "</td>" .
+                  "<td>" . $vote . "</td>" .
+                  "<td>" . $distanceToCenter . ' km' . "</td>" .
+                "</tr>";
+            echo $textLine;
+              }
+              ?>
+        </tbody>
+        
       </table>
         
     </div>
