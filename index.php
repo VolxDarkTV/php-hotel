@@ -100,7 +100,7 @@
             foreach ($hotels_temp as $hotel){
               $name = $hotel['name'];
               $description = $hotel['description'];
-              $parking = $hotel['parking'] === true ? 'si' : 'no';
+              $parking = $hotel['parking'] ? 'si' : 'no';
               $vote = $hotel['vote'];
               $distanceToCenter = $hotel['distance_to_center'];
 
@@ -112,7 +112,7 @@
                   "<td>" . $vote . "</td>" .
                   "<td>" . $distanceToCenter . ' km' . "</td>" .
                 "</tr>";
-            echo $textLine;
+              echo $textLine;
               }
               ?>
         </tbody>
