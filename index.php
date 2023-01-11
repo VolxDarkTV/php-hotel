@@ -61,10 +61,16 @@
     <div>
       <form>
         <!-- Parking -->
-        <input type="checkbox" name="parking" id="parking">
+        <input type="checkbox" name="parking" id="parking" 
+        <?php
+          echo (isset($_GET["parking"])) ? 'checked' : '';
+        ?>>
         <label for="parking">Parking</label>
         <!-- No Parking -->
-        <input type="checkbox" name="noparking" id="noparking">
+        <input type="checkbox" name="noparking" id="noparking" 
+        <?php
+          echo (isset($_GET["noparking"])) ? 'checked' : '';
+        ?>>
         <label for="noparking">NoParking</label>
         <!-- Search -->
         <input type="submit" value="Search">
